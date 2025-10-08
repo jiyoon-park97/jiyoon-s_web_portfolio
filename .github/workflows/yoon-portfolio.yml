@@ -1,42 +1,38 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Dart
+name: jiyoon-s web portfolio
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ master ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4.1.1
 
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2.12.0
+      with:
+        flutter-version: '3.16.5'
+  
+    - name: Create .env file
+      run: |
+        echo "SOT2_URL=${{ secrets.SOT2_URL }}" > .env
+        echo "EMAIL_LOGGING_URL=${{ secrets.EMAIL_LOGGING_URL }}" >> .env
+        echo "KAKAO_SHARE_APP_KEY=${{ secrets.KAKAO_SHARE_APP_KEY }}" >> .env
+        echo "KAKAO_SHARE_JS_KEY=${{ secrets.KAKAO_SHARE_JS_KEY }}" >> .env
+      env:
+        SOT2_URL: ${{ secrets.SOT2_URL }}
+        EMAIL_LOGGING_URL: ${{ secrets.EMAIL_LOGGING_URL }}
+        KAKAO_SHARE_APP_KEY: ${{ secrets.KAKAO_SHARE_APP_KEY }}
+        KAKAO_SHARE_JS_KEY: ${{ secrets.KAKAO_SHARE_JS_KEY }}
 
-      - name: Install dependencies
-        run: dart pub get
+    - name: Build Web
+      run: flutter build web --release
 
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
-
-      # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: dart analyze
-
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
-      - name: Run tests
-        run: dart test
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3.9.3
+      with:
+        github_token: ${{ secrets.MY_SECRET_KEY_NAME }}
+        publish_dir: ./build/web
