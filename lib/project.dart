@@ -534,7 +534,7 @@ class _ProjectPageState extends State<ProjectPage> {
                                         children: [
                                           _buildTag('LLM'),
                                           _buildTag('HCI'),
-                                          _buildTag('conversation'),
+                                          _buildTag('Conversation'),
                                         ],
                                       ),
                                     ],
