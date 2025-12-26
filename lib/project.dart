@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'contact.dart';
 
 class ProjectPage extends StatefulWidget {
   const ProjectPage({super.key});
@@ -662,6 +663,11 @@ class _ProjectPageState extends State<ProjectPage> {
             Navigator.popUntil(context, (route) => route.isFirst);
           } else if (label == 'introduce') {
             Navigator.pop(context);
+          } else if (label == 'contact') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ContactPage()),
+            );
           }
         },
         child: AnimatedContainer(
