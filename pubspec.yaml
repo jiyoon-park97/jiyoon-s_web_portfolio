@@ -63,6 +63,8 @@ flutter:
     - images/yonseiuniv.jpg
     - images/workitalki.png
     - images/workitalki_chatbot.jpg
+    - images/thesis.jpg
+    - images/gpt_conversation.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

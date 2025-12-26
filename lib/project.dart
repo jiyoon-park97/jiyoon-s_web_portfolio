@@ -371,28 +371,28 @@ class _ProjectPageState extends State<ProjectPage> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'images/project3.png',
+                                        'images/thesis.jpg',
                                         height: 400,
                                         fit: BoxFit.contain,
                                         errorBuilder:
                                             (context, error, stackTrace) {
-                                          return Container(
-                                            height: 400,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey
-                                                  .withOpacity(0.2),
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
-                                            ),
-                                            child: const Center(
-                                              child: Icon(
-                                                Icons.image,
-                                                size: 80,
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-                                          );
-                                        },
+                                              return Container(
+                                                height: 400,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                ),
+                                                child: const Center(
+                                                  child: Icon(
+                                                    Icons.image,
+                                                    size: 80,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                       ),
                                     ),
                                   ),
@@ -406,7 +406,7 @@ class _ProjectPageState extends State<ProjectPage> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         const Text(
-                                          '프로젝트 3',
+                                          '생성형 AI의 의사-환자 대화 이해 능력 평가를 위한 \n개체명 인식 벤치마크 데이터 구축 및 평가 연구 ',
                                           style: TextStyle(
                                             fontSize: 32,
                                             fontWeight: FontWeight.bold,
@@ -415,7 +415,7 @@ class _ProjectPageState extends State<ProjectPage> {
                                         ),
                                         const SizedBox(height: 16),
                                         const Text(
-                                          '2023.01 - 2023.06',
+                                          '2024.01 - 2024.12',
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: Color(0xFF95A5A6),
@@ -423,11 +423,48 @@ class _ProjectPageState extends State<ProjectPage> {
                                         ),
                                         const SizedBox(height: 24),
                                         const Text(
-                                          '프로젝트 3에 대한 설명입니다. 여기에 프로젝트의 주요 내용과 목표, 사용된 기술 등을 작성하세요.',
+                                          '석사 학위 논문으로, 의사-환자 대화라는 전문적인 상황에서 \n생성형 AI가 얼마나 개체명 인식을 잘 해내는지 평가하는 연구를 진행하였습니다.',
                                           style: TextStyle(
                                             fontSize: 18,
                                             color: Color(0xFF2D3436),
                                             height: 1.6,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        // 학위 논문 링크 추가
+                                        InkWell(
+                                          onTap: () async {
+                                            final Uri url = Uri.parse(
+                                              'https://www.riss.kr/search/detail/DetailView.do?p_mat_type=be54d9b8bc7cdb09&control_no=61d882e4274a7dcdffe0bdc3ef48d419&keyword=%EB%B0%95%EC%A7%80%EC%9C%A4%20%EC%9D%98%EC%82%AC-%ED%99%98%EC%9E%90',
+                                            ); // 실제 논문 링크로 변경
+                                            if (await canLaunchUrl(url)) {
+                                              await launchUrl(
+                                                url,
+                                                mode: LaunchMode
+                                                    .externalApplication,
+                                              );
+                                            }
+                                          },
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const Icon(
+                                                Icons.article,
+                                                size: 20,
+                                                color: Color(0xFF6C63FF),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              const Text(
+                                                '학위 논문 보기',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Color(0xFF6C63FF),
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         const SizedBox(height: 24),
@@ -435,9 +472,9 @@ class _ProjectPageState extends State<ProjectPage> {
                                           spacing: 8,
                                           runSpacing: 8,
                                           children: [
-                                            _buildTag('Flutter'),
-                                            _buildTag('AI'),
-                                            _buildTag('App'),
+                                            _buildTag('LLM'),
+                                            _buildTag('Conversation'),
+                                            _buildTag('NLP'),
                                           ],
                                         ),
                                       ],
@@ -463,11 +500,10 @@ class _ProjectPageState extends State<ProjectPage> {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Text(
-                                        '프로젝트 4',
+                                        'GPT-사람, 사람-사람 토론 비교 연구',
                                         style: TextStyle(
                                           fontSize: 32,
                                           fontWeight: FontWeight.bold,
@@ -476,7 +512,7 @@ class _ProjectPageState extends State<ProjectPage> {
                                       ),
                                       const SizedBox(height: 16),
                                       const Text(
-                                        '2022.06 - 2022.12',
+                                        '2025.08 - 2025.12',
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: Color(0xFF95A5A6),
@@ -484,7 +520,7 @@ class _ProjectPageState extends State<ProjectPage> {
                                       ),
                                       const SizedBox(height: 24),
                                       const Text(
-                                        '프로젝트 4에 대한 설명입니다. 여기에 프로젝트의 주요 내용과 목표, 사용된 기술 등을 작성하세요.',
+                                        '사람과 사람, 사람과 GPT가 토론할 때의 차이점을 분석하는 연구입니다.',
                                         style: TextStyle(
                                           fontSize: 18,
                                           color: Color(0xFF2D3436),
@@ -496,9 +532,9 @@ class _ProjectPageState extends State<ProjectPage> {
                                         spacing: 8,
                                         runSpacing: 8,
                                         children: [
-                                          _buildTag('Python'),
-                                          _buildTag('Data Science'),
-                                          _buildTag('ML'),
+                                          _buildTag('LLM'),
+                                          _buildTag('HCI'),
+                                          _buildTag('conversation'),
                                         ],
                                       ),
                                     ],
@@ -511,27 +547,29 @@ class _ProjectPageState extends State<ProjectPage> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(16),
                                     child: Image.asset(
-                                      'images/project4.png',
+                                      'images/gpt_conversation.png',
                                       height: 400,
                                       fit: BoxFit.contain,
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return Container(
-                                          height: 400,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.withOpacity(0.2),
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                          ),
-                                          child: const Center(
-                                            child: Icon(
-                                              Icons.image,
-                                              size: 80,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        );
-                                      },
+                                            return Container(
+                                              height: 400,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey.withOpacity(
+                                                  0.2,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: const Center(
+                                                child: Icon(
+                                                  Icons.image,
+                                                  size: 80,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            );
+                                          },
                                     ),
                                   ),
                                 ),
