@@ -201,7 +201,7 @@ class _IntroducePageState extends State<IntroducePage> {
                                       _buildImageSlider(),
                                       const SizedBox(height: 20),
                                       const Text(
-                                        '학위모 던지기 1급 자격증 소지자',
+                                        '',
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: Color(0xFF2D3436),
@@ -277,7 +277,7 @@ class _IntroducePageState extends State<IntroducePage> {
                                 const SizedBox(height: 20),
                                 _buildSkillItem('Python', 3.5),
                                 const SizedBox(height: 20),
-                                const Text('지피티랑 함께라면 두렵지 않아..'),
+                                const Text(''),
                               ],
                             ),
                           ),
