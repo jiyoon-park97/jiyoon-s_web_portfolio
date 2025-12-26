@@ -313,7 +313,8 @@ class _ContactPageState extends State<ContactPage> {
             controller: _messageController,
             label: '메시지',
             icon: Icons.message_outlined,
-            maxLines: 5,
+            minLines: 5,
+            maxLines: 10,
           ),
           const SizedBox(height: 30),
           SizedBox(
@@ -398,10 +399,12 @@ class _ContactPageState extends State<ContactPage> {
     required TextEditingController controller,
     required String label,
     required IconData icon,
+    int minLines = 1,
     int maxLines = 1,
   }) {
     return TextField(
       controller: controller,
+      minLines: minLines,
       maxLines: maxLines,
       decoration: InputDecoration(
         labelText: label,

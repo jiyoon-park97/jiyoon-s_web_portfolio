@@ -67,64 +67,12 @@ class _IntroducePageState extends State<IntroducePage> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final isMobile = MediaQuery.of(context).size.width < 768;
 
     return Scaffold(
-      body: isMobile ? _buildMobileLayout(screenHeight) : _buildDesktopLayout(screenHeight),
-    );
-  }
-
-  Widget _buildMobileLayout(double screenHeight) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.white, Color(0xFFF5F5FF)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Column(
+      body: Row(
         children: [
+          _buildSidebar(context),
           Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 40),
-                    const Text(
-                      '언어를 기반으로\n사람과 컴퓨터를 연결하는\n연구자가 되고 싶은\n박지윤입니다',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2D3436),
-                        height: 1.6,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 60),
-                    _buildMobileInterests(),
-                    const SizedBox(height: 60),
-                    _buildMobileTimeline(),
-                    const SizedBox(height: 60),
-                    _buildMobileSkills(),
-                    const SizedBox(height: 40),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          _buildBottomNavBar(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDesktopLayout(double screenHeight) {
-    return Row(
-      children: [
-        _buildSidebar(context),
-        Expanded(
             child: Listener(
               onPointerSignal: (event) {
                 if (event is PointerScrollEvent) {

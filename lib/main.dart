@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'introduce.dart';
 import 'project.dart';
 import 'contact.dart';
@@ -14,18 +13,11 @@ class JiyoonPortfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(1920, 1080), // 디자인 기준 해상도
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          title: 'Jiyoon Portfolio',
-          theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
-          home: const PortfolioHomePage(),
-          debugShowCheckedModeBanner: false,
-        );
-      },
+    return MaterialApp(
+      title: 'Jiyoon Portfolio',
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
+      home: const PortfolioHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -78,132 +70,65 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 768;
-
     return Scaffold(
-      body: isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
-    );
-  }
-
-  Widget _buildMobileLayout() {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.white, Colors.deepPurpleAccent],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Column(
+      body: Row(
         children: [
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: Text(
-                  _displayedText,
-                  style: TextStyle(
-                    fontSize: 32.sp,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFF2D3436),
-                    height: 1.6,
-                    letterSpacing: -0.5,
-                  ),
+          // 왼쪽 사이드바
+          Container(
+            width: 100,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(2, 0),
                 ),
-              ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildNavItem(Icons.home_outlined, 'home'),
+                const SizedBox(height: 40),
+                _buildNavItem(Icons.person_outline, 'introduce'),
+                const SizedBox(height: 40),
+                _buildNavItem(Icons.work_outline, 'project'),
+                const SizedBox(height: 40),
+                _buildNavItem(Icons.email_outlined, 'contact'),
+              ],
             ),
           ),
-          _buildBottomNavBar(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDesktopLayout() {
-    return Row(
-      children: [
-        _buildSidebar(),
-        Expanded(
-          child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.white, Colors.deepPurpleAccent],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          // 오른쪽 메인 영역
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.white, Colors.deepPurpleAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
-            ),
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 80.w),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    _displayedText,
-                    style: TextStyle(
-                      fontSize: 48.sp,
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xFF2D3436),
-                      height: 1.6,
-                      letterSpacing: -0.5,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      _displayedText,
+                      style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF2D3436),
+                        height: 1.6,
+                        letterSpacing: -0.5,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBottomNavBar() {
-    return Container(
-      height: 70.h,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(Icons.home_outlined, 'home'),
-          _buildNavItem(Icons.person_outline, 'introduce'),
-          _buildNavItem(Icons.work_outline, 'project'),
-          _buildNavItem(Icons.email_outlined, 'contact'),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSidebar() {
-    return Container(
-      width: 100.w,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10.r,
-            offset: Offset(2.w, 0),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildNavItem(Icons.home_outlined, 'home'),
-          SizedBox(height: 40.h),
-          _buildNavItem(Icons.person_outline, 'introduce'),
-          SizedBox(height: 40.h),
-          _buildNavItem(Icons.work_outline, 'project'),
-          SizedBox(height: 40.h),
-          _buildNavItem(Icons.email_outlined, 'contact'),
         ],
       ),
     );
@@ -255,28 +180,28 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           decoration: BoxDecoration(
             color: isSelected
                 ? const Color(0xFF6C63FF).withOpacity(0.1)
                 : Colors.transparent,
-            borderRadius: BorderRadius.circular(12.r),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 icon,
-                size: 28.sp,
+                size: 28,
                 color: isSelected
                     ? const Color(0xFF6C63FF)
                     : const Color(0xFF95A5A6),
               ),
-              SizedBox(height: 6.h),
+              const SizedBox(height: 6),
               Text(
                 label,
                 style: TextStyle(
-                  fontSize: 11.sp,
+                  fontSize: 11,
                   color: isSelected
                       ? const Color(0xFF6C63FF)
                       : const Color(0xFF95A5A6),
